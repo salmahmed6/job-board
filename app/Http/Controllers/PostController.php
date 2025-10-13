@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Post;
+
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+    public function index() {
+        $data = Post::all();
+
+        return view('posts.index', ['data'=> $data]);
+    }
+
+    public function create() {
+        Post::create([
+            'title' => 'New Post Title',
+            'body' => 'This is the body of the new post.',
+            'published_at' => true,
+        ]);
+    }
+}
