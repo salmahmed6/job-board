@@ -10,8 +10,15 @@ class PostController extends Controller
     public function index() {
         $data = Post::all();
 
-        return view('posts.index', ['data'=> $data]);
+        return view('post.index', ['data'=> $data]);
     }
+
+    function show($id) {
+        $post = Post::findOrFail($id);
+
+        return view('post.show', ['post' => $post]);
+    }
+
 
     public function create() {
         Post::create([
