@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 use App\Models\Tag;
+use App\Models\Post;
 
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function index() {
+    function index() {
         $data = Tag::all();
 
         return view('tag.index', ['data'=> $data]);
     }
 
-    public function create() {
+    function create() {
         Tag::create([
             'title' => 'software engineer'
         ]);
@@ -23,5 +24,18 @@ class TagController extends Controller
 
     function delete() {
         Tag::destroy(13);
+    }
+
+    function testManyToMany() {
+        $post15 = Post::find(15);
+        $post30 = Post::find(15);
+
+        $post15->tags()->attach([1, 2]);
+        $post30->tags()->attach([1]);
+
+        return response()->json([
+            'post15' => $post15->tags,
+            'post30'=> $post30->tags
+        ]);
     }
 }
