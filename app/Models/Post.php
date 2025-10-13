@@ -6,15 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $table = "post";
     protected $fillable = [
         "title",
         "body",
         "published_at",
-    ];  // can be updated/ assigned
+    ]; 
 
     protected $guarded = [
-        "id",
-        "created_at",
-        "updated_at",
-    ];   // cannot be updated/ assigned
+        "id"
+    ];  
+
+      public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
+
+
