@@ -19,3 +19,4 @@ Route::get('/post/{id}', [PostController::class,'show']);
 Route::get('/tag', [TagController::class,'index']);
 Route::get('/tag/create', [TagController::class,'create']);
 Route::get('/tag/delete', [TagController::class,'delete']);
+Route::get('/tag/test-many', [TagController::class,'testManyToMany']);
