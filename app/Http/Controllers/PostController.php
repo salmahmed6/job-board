@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        $data = Post::paginate(5);
+        $data = Post::cursorPaginate(5);
 
         return view('post.index', ['data'=> $data]);
     }
