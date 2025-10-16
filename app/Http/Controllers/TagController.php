@@ -1,41 +1,67 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Tag;
-use App\Models\Post;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    function index() {
-        $data = Tag::all();
-
-        return view('tag.index', ['data'=> $data]);
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $tags = Tag::all();
+        return view("tag.index", ["tags"=> $tags]);
     }
 
-    function create() {
-        Tag::create([
-            'title' => 'software engineer'
-        ]);
-
-        return redirect('/tag');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view("tag.create", ["pageTitle"=> ' Create Tag ']);
     }
 
-    function delete() {
-        Tag::destroy(13);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
-    function testManyToMany() {
-        $post15 = Post::find(15);
-        $post30 = Post::find(15);
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $tag = Tag::find($id);
+        return view("tag.show", compact("tag"));
+    }
 
-        $post15->tags()->attach([1, 2]);
-        $post30->tags()->attach([1]);
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-        return response()->json([
-            'post15' => $post15->tags,
-            'post30'=> $post30->tags
-        ]);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
