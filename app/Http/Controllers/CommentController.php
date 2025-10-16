@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view("tag.index", ["tags"=> $tags]);
+        $comments = Comment::all();
+        return view("comment.index", ["comments"=> $comments]);
     }
 
     /**
@@ -21,7 +21,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view("tag.create", ["pageTitle"=> ' Create Tag ']);
+        return view("comment.create", ["pageTitle"=> ' Create Comment ']);
     }
 
     /**
@@ -37,8 +37,8 @@ class TagController extends Controller
      */
     public function show(string $id)
     {
-        $tag = Tag::find($id);
-        return view("tag.show", compact("tag"));
+        $comment = Comment::find($id);
+        return view("comment.show", compact("comment"));
     }
 
     /**
